@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile for employer or worker with CNIC, contact, and role",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "cnic": { "type": "string" },
+        "city": { "type": "string" },
+        "role": { "type": "string", "enum": ["employer", "helper"] },
+        "isCNICVerified": { "type": "boolean" },
+        "isPro": { "type": "boolean" },
+        "walletBalancePKR": { "type": "number" },
+        "rating": { "type": "number" },
+        "completedJobs": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "fullName", "phone", "city", "role"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "On-demand task posted by employer with competitive bids and mutual reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "title": { "type": "string" },
+        "urduTitle": { "type": "string" },
+        "category": { "type": "string" },
+        "city": { "type": "string" },
+        "area": { "type": "string" },
+        "description": { "type": "string" },
+        "budgetPKR": { "type": "number" },
+        "isFixedBudget": { "type": "boolean" },
+        "isFeatured": { "type": "boolean" },
+        "urgency": { "type": "string" },
+        "postedBy": { "type": "string" },
+        "postedByPhone": { "type": "string" },
+        "postedByCnic": { "type": "string" },
+        "postedAt": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "assigned", "completed"] },
+        "acceptedBidId": { "type": "string" },
+        "employerRemarks": { "type": "string" },
+        "employerRating": { "type": "number" },
+        "workerRemarks": { "type": "string" },
+        "workerRating": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "orderNumber", "title", "category", "city", "budgetPKR", "postedBy"]
+    },
+    "Bid": {
+      "title": "Bid",
+      "description": "Competitive quote submitted by worker with skill stars and phone",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "taskId": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "workerName": { "type": "string" },
+        "workerAvatar": { "type": "string" },
+        "workerTrade": { "type": "string" },
+        "isCNICVerified": { "type": "boolean" },
+        "isPro": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "completedJobs": { "type": "number" },
+        "amountPKR": { "type": "number" },
+        "estimatedHours": { "type": "string" },
+        "proposal": { "type": "string" },
+        "hasOwnTools": { "type": "boolean" },
+        "workerPhone": { "type": "string" },
+        "skillStars": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "taskId", "workerName", "amountPKR", "proposal"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Tasks posted by employers"
+    },
+    "/tasks/{taskId}/bids/{bidId}": {
+      "schema": "Bid",
+      "description": "Bids placed by workers on a task"
+    }
+  }
+}

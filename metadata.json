@@ -1,0 +1,6 @@
+{
+  "name": "LabourHub.pk — Pakistan's On-Demand Task & Skill Marketplace",
+  "description": "Transforming localized peer-to-peer task hiring across Pakistan with CNIC verification, live bidding, Pro worker subscriptions, and multi-city trades.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
